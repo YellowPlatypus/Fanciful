@@ -1,6 +1,8 @@
 # fanciful-plugin
 The [Fanciful](http://github.com/mkremins/fanciful) chat message formatting library for Bukkit plugins, packaged as a standalone Bukkit plugin for easier consumption as part of a non-Maven plugin development workflow.
 
+Originally inspired by [prplz](http://github.com/prplz)'s [Fanciful fork](https://github.com/prplz/fanciful), another attempt at repackaging the library as a standalone plugin.
+
 ## Installation
 Add the Fanciful plugin to your plugin's runtime dependencies in your `plugin.yml`.
 
