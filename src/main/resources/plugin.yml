@@ -1,0 +1,5 @@
+name: Fanciful
+version: 0.1.2
+description: Chat message formatting library
+author: Max Kreminski
+main: mkremins.fanciful.Fanciful
