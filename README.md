@@ -5,7 +5,7 @@ The [Fanciful](http://github.com/mkremins/fanciful) chat message formatting libr
 Add the Fanciful plugin to your plugin's runtime dependencies in your `plugin.yml`.
 
 ```yaml
-dependencies: [Fanciful]
+depend: [Fanciful]
 ```
 
 Instruct server administrators who install your plugin to also install `fanciful-plugin.jar` (by adding it to the server's `/plugins` directory like any other plugin).
