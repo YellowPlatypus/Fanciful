@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import static mkremins.fanciful.TextualComponent.rawText;
+import net.amoebaman.util.Reflection;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents a formattable message. Such messages can use elements such as colors, formatting codes, hover and click data, and other features provided by the vanilla Minecraft <a href="http://minecraft.gamepedia.com/Tellraw#Raw_JSON_Text">JSON message formatter</a>.
@@ -310,6 +312,21 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		}
 		return formattedTooltip(result.messageParts.isEmpty() ? null : result); // Throws NPE if size is 0, intended
 	}
+        public FancyMessage itemTooltip(String itemJSON) {
+            onHover("show_item", new JsonString(itemJSON));
+            return this;
+        }
+  
+        public FancyMessage itemTooltip(ItemStack itemStack) {
+            try {
+                Object nmsItem = Reflection.getMethod(Reflection.getOBCClass("inventory.CraftItemStack"), "asNMSCopy", new Class[] { ItemStack.class }).invoke(null, new Object[] { itemStack });
+                return itemTooltip(Reflection.getMethod(Reflection.getNMSClass("ItemStack"), "save", new Class[] { Reflection.getNMSClass("NBTTagCompound") }).invoke(nmsItem, new Object[] { Reflection.getNMSClass("NBTTagCompound").newInstance() }).toString());
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return this;
+        }
 
 	/**
 	 * Set the behavior of the current editing component to display the specified lines of formatted text when the client hovers over the text.
